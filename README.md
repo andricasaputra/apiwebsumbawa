@@ -1,27 +1,41 @@
-Step 1
+## Step 1
 
-## Clone Repo
+```sh
+clone this repo git@github.com:andricasaputra/apiwebsumbawa.git
+```
+## Step 2
 
-Step 2
+```sh
+composer install or composer update
+```
+## Step 3
 
-## composer install or composer update
+```sh
+php artisan key:generate
+```
+## Step 4 Setup your Database
 
-Step 3
-
-## php artisan key:generate
-
-Step 4
-
-## Setup your Database
-
+```sh
 --DB_DATABASE=test
 --DB_USERNAME=xxx
 --DB_PASSWORD=xxx
+```
 
-Step 5 run
+## Step 5 run
 
-## php artisan migrate --seed
+```sh
+php artisan migrate --seed
+```
+## Step 6 
 
-Step 6 
+```sh
+php artisan serve
+```
+## NOTE FOR INITIAL COMMIT :  :
 
-## php artisan serve
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:andricasaputra/apiwebsumbawa.git
+git push -u origin main
