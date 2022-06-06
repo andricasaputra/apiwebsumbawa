@@ -30,7 +30,7 @@ class HeadlineRepository extends AbstractRepository
 	{
 		$factory = app()->make(UplaodContract::class);
 
-		$image = $factory->upload($request, $this->model->articleImagePath);
+		$image = $factory->upload($request, $this->model->headlineImagePath);
 
 		return collect($request)->merge(['image' => $image]);
 	}
@@ -39,7 +39,7 @@ class HeadlineRepository extends AbstractRepository
 	{
 		$image = $this->model->findOrFail($id)->getRawOriginal('image');
 
-		$full_path = public_path($this->model->articleImagePath .'/'. $image);
+		$full_path = public_path($this->model->headlineImagePath .'/'. $image);
 
 		if(file_exists($full_path)) {
 		   unlink($full_path);
