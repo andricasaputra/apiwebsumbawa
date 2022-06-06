@@ -50,16 +50,6 @@ abstract class AbstractRepository
 
     public function destroy($id)
     {
-    	if($this->model->destroy($id)){
-    		return response()->json([
-    			'error' => false,
-    			'message' => 'successfully delete data'
-    		]);
-    	}
-
-        return response()->json([
-			'error' => true,
-			'message' => 'failed delete data'
-		]);
+    	return $this->model->destroy($id) === 0 ?: [];
 	}
 }

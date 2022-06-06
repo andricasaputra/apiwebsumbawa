@@ -34,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UplaodContract::class, function($app){
             if (request()->is('api/articles') || request()->is('api/articles/*')) {
                 return new \App\Upload\ArticleUpload;
+            } elseif(request()->is('api/headlines') || request()->is('api/headlines/*')) {
+                return new \App\Upload\HeadlineUpload;
             }
         });
     }

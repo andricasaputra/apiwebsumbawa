@@ -6,27 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class Article extends Model
+class Headline extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public $articleImagePath = 'images/articles';
+    public $headlineImagePath = 'images/headlines';
 
     protected function image(): Attribute
     {
         $url = config('app.url');
         $port = env('SERVER_PORT') ? ':' . env('SERVER_PORT') : '';
-        $full_path = $url . $port . '/' . $this->articleImagePath;
+        $full_path = $url . $port . '/' . $this->headlineImagePath;
 
         return Attribute::make(
             get: fn ($value) => $full_path .'/'. $value,
         );
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
     }
 }

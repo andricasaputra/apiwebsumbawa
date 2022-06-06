@@ -1,10 +1,10 @@
-<?php 
+<?php  
 
 namespace App\Repositories; 
 
 use App\Contracts\UplaodContract;
 
-class ArticlesRepository extends AbstractRepository
+class HeadlineRepository extends AbstractRepository
 {
 	public function __construct($model)
 	{

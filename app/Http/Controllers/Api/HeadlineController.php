@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-Use App\Models\Article;
-use App\Repositories\ArticlesRepository; 
-use App\Http\Resources\ArticleResource;
-use App\Http\Requests\ArticleRequest;
+Use App\Models\Headline;
+use App\Repositories\HeadlineRepository; 
+use App\Http\Resources\HeadlineResource;
+use App\Http\Requests\HeadlineRequest;
 
-class ArticleController extends Controller
+class HeadlineController extends Controller
 {
     protected $repository;
 
     public function __construct()
     {
-        $this->repository = new ArticlesRepository(new Article);
+        $this->repository = new HeadlineRepository(new Headline);
     }
 
     /**
@@ -25,7 +25,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return new ArticleResource($this->repository->paginate());
+        return new HeadlineResource($this->repository->paginate());
     }
 
     /**
@@ -34,9 +34,9 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ArticleRequest $request)
+    public function store(HeadlineRequest $request)
     {
-        return  new ArticleResource($this->repository->store($request));
+        return  new HeadlineResource($this->repository->store($request));
     }
 
     /**
@@ -47,7 +47,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        return new ArticleResource($this->repository->show($id));
+        return new HeadlineResource($this->repository->show($id));
     }
 
     /**
@@ -57,9 +57,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticleRequest $request, $id)
+    public function update(HeadlineRequest $request, $id)
     {
-         return new ArticleResource($this->repository->update($request, $id));
+         return new HeadlineResource($this->repository->update($request, $id));
     }
 
     /**
@@ -70,6 +70,6 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        return new ArticleResource($this->repository->destroy($id));
+        return new HeadlineResource($this->repository->destroy($id));
     }
 }

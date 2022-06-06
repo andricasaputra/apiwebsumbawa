@@ -2,15 +2,17 @@
 
 namespace App\Upload;
 
-use Intervention\Image\Facades\Image;
+use Intervention\Image\ImageManagerStatic as Image;
 
-class AbstractUpload
+abstract class AbstractUpload
 {
 	protected $image;
 	protected $imagename;
 	protected $filepath;
 	protected $width = 500;
 	protected $height = 500;
+	protected $shouldResize = false;
+	protected $shouldCrop = false;
 
 	public function setup($request, $savepath)
 	{
@@ -24,19 +26,34 @@ class AbstractUpload
 		    mkdir($this->filepath, 0777, true);
 		}
 
-	    $this->resize()->image->move($this->filepath, $this->imagename);
+		$this->image->move($this->filepath, $this->imagename);
+
+	    $this->resize()->crop();
 
 	    return $this->getImageName();
 	}
 
 	protected function resize()
 	{
-		$resize = Image::make($this->image->path());
+		if ($this->shouldResize) {
 
-	    $resize->resize($this->width, $this->height, function ($const) {
-	        $const->aspectRatio();
-	    })->save($this->filepath .'/'. $this->imagename);
+			$image = Image::make($this->filepath .'/'.$this->imagename);
+	    	$image->resize($this->width, $this->height, function ($const) {
+	        	$const->aspectRatio();
+	    	})->save($this->filepath .'/'. $this->imagename);
+		}
 
+	    return $this;
+	}
+
+	protected function crop()
+	{
+		if ($this->shouldCrop) {
+
+			$image = Image::make($this->filepath .'/'.$this->imagename);
+	    	$image->crop($this->width, $this->height)->save($this->filepath .'/'. $this->imagename);
+		}
+		
 	    return $this;
 	}
 
