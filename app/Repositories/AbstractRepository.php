@@ -20,6 +20,8 @@ abstract class AbstractRepository
 
 	public function paginate($perPage = 10)
 	{
+		if(request()->has('per-page')) $perPage = request('per-page');
+
 		return $this->model->latest()->paginate($perPage);
 	} 
 

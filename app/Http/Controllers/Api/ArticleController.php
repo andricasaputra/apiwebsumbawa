@@ -25,7 +25,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return new ArticleResource($this->repository->paginate());
+        return ArticleResource::collection($this->repository->paginate());
     }
 
     /**

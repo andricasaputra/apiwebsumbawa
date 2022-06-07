@@ -14,17 +14,6 @@ class Article extends Model
 
     public $articleImagePath = 'images/articles';
 
-    protected function image(): Attribute
-    {
-        $url = config('app.url');
-        $port = env('SERVER_PORT') ? ':' . env('SERVER_PORT') : '';
-        $full_path = $url . $port . '/' . $this->articleImagePath;
-
-        return Attribute::make(
-            get: fn ($value) => $full_path .'/'. $value,
-        );
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
