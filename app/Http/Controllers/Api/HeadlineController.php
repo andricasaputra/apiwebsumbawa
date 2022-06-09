@@ -8,14 +8,15 @@ Use App\Models\Headline;
 use App\Repositories\HeadlineRepository; 
 use App\Http\Resources\HeadlineResource;
 use App\Http\Requests\HeadlineRequest;
+use App\Contracts\UplaodContract;
 
 class HeadlineController extends Controller
 {
     protected $repository;
 
-    public function __construct()
+    public function __construct(UplaodContract $image = null)
     {
-        $this->repository = new HeadlineRepository(new Headline);
+        $this->repository = new HeadlineRepository(new Headline, $image);
     }
 
     /**
@@ -25,7 +26,7 @@ class HeadlineController extends Controller
      */
     public function index()
     {
-        return new HeadlineResource($this->repository->paginate());
+        return HeadlineResource::collection($this->repository->paginate());
     }
 
     /**

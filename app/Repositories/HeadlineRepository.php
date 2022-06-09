@@ -6,9 +6,9 @@ use App\Contracts\UplaodContract;
 
 class HeadlineRepository extends AbstractRepository
 {
-	public function __construct($model)
+	public function __construct($model, $image = null)
 	{
-		parent::__construct($model);
+		parent::__construct($model, $image);
 	}
 
 	public function store($request)
@@ -28,9 +28,8 @@ class HeadlineRepository extends AbstractRepository
 
 	protected function upload($request)
 	{
-		$factory = app()->make(UplaodContract::class);
 
-		$image = $factory->upload($request, $this->model->headlineImagePath);
+		$image = $this->image->upload($request, $this->model->headlineImagePath);
 
 		return collect($request)->merge(['image' => $image]);
 	}

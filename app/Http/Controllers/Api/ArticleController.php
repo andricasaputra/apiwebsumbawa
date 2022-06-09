@@ -8,14 +8,15 @@ Use App\Models\Article;
 use App\Repositories\ArticlesRepository; 
 use App\Http\Resources\ArticleResource;
 use App\Http\Requests\ArticleRequest;
+use App\Contracts\UplaodContract;
 
 class ArticleController extends Controller
 {
     protected $repository;
 
-    public function __construct()
+    public function __construct(UplaodContract $image = null)
     {
-        $this->repository = new ArticlesRepository(new Article);
+        $this->repository = new ArticlesRepository(new Article, $image);
     }
 
     /**

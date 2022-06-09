@@ -14,7 +14,14 @@ class HeadlineResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'image' => asset('images/headlines/' . $this->image),
+            'link' => $this->link,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 
     public function with($request)
