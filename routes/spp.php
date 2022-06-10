@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\SPP\HomeSPPController;
 use App\Http\Controllers\Api\SPP\AlurPelayananController;
 use App\Http\Controllers\Api\SPP\DasarHukumController;
 use App\Http\Controllers\Api\SPP\InfoPelayananPengaduanController;
@@ -8,6 +9,8 @@ use App\Http\Controllers\Api\SPP\JamPelayananController;
 use App\Http\Controllers\Api\SPP\MaklumatPelayananController;
 use App\Http\Controllers\Api\SPP\ProdukPelayananController;
 use App\Http\Controllers\Api\SPP\StandarWaktuController;
+
+Route::get('/', HomeSPPController::class);
 
 Route::resource('alur', AlurPelayananController::class)->except(['create', 'edit']);
 

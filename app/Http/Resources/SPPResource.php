@@ -19,7 +19,10 @@ class SPPResource extends JsonResource
             'title' => $this->title,
             'body' => $this->body,
             'image' => url('images/spp/' . $this->image),
+            'icon' => url('images/spp/icons/' . $this->icon),
             'active' => $this->active,
+            'detail' => url('api/spp/' . $this->url),
+            'url' => $this->url,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

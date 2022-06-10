@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 use App\Contracts\SPPModelContract;
 use App\Contracts\SPPRepositoryContract;
+use App\Http\Controllers\Api\SPP\HomeSPPController;
 use App\Http\Controllers\Api\SPP\AlurPelayananController;
 use App\Http\Controllers\Api\SPP\DasarHukumController;
 use App\Http\Controllers\Api\SPP\InfoPelayananPengaduanController;
@@ -47,6 +48,7 @@ class SPPServiceProvider extends ServiceProvider
     protected function setSPPControllerClass()
     {
         $this->app->when([
+            HomeSPPController::class,
             AlurPelayananController::class,
             DasarHukumController::class,
             InfoPelayananPengaduanController::class,
@@ -79,6 +81,8 @@ class SPPServiceProvider extends ServiceProvider
                return new  ProdukPelayananRepository;
             } elseif(request()->is('api/spp/standar') || request()->is('api/spp/standar/*')) {
                return new  StandarWaktuRepository;
+            } elseif(request()->is('api/spp')) {
+               return new  AlurPelayananRepository;
             }
         });
     }

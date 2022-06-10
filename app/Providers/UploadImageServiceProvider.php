@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Contracts\UplaodContract;
 use App\Http\Controllers\Api\HeadlineController;
 use App\Http\Controllers\Api\ArticleController;
+use App\Http\Controllers\Api\SPP\HomeSPPController;
 use App\Http\Controllers\Api\SPP\AlurPelayananController;
 use App\Http\Controllers\Api\SPP\DasarHukumController;
 use App\Http\Controllers\Api\SPP\InfoPelayananPengaduanController;
@@ -53,6 +54,7 @@ class UploadImageServiceProvider extends ServiceProvider
         $this->app->when([
             HeadlineController::class,
             ArticleController::class,
+            HomeSPPController::class,
             AlurPelayananController::class,
             DasarHukumController::class,
             InfoPelayananPengaduanController::class,

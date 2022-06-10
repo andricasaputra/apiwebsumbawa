@@ -31,6 +31,11 @@ abstract class AbstractSPPController extends Controller
         return JsonResource::collection($this->repository->get());
     }
 
+    public function all()
+    {
+        return JsonResource::collection($this->repository->all());
+    }
+
     /**
      * Store a newly created resource in storage.
      *

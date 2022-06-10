@@ -27,7 +27,9 @@ class SPPRequest extends FormRequest
             'title' => 'sometimes|required|string|unique:spp,title',
             'body' => 'sometimes|required|string',
             'image' => 'sometimes|required|image|max:2048',
-            'type' => 'sometimes|required|string'
+            'type' => 'sometimes|required|string',
+            'icon' => 'sometimes|required|string',
+            'url' => 'sometimes|required|string|unique:spp,url',
         ];
     }
 }

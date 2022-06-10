@@ -19,6 +19,8 @@ return new class extends Migration
             $table->longText('body')->nullable()->default(NULL);
             $table->string('image')->nullable()->default(NULL);;
             $table->string('type');
+            $table->string('icon')->nullable();
+            $table->string('url');
             $table->tinyInteger('active')->nullable()->default(1);
             $table->timestamps();
         });

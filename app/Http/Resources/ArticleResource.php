@@ -16,11 +16,11 @@ class ArticleResource extends JsonResource
     {
         return [
             'id'            => $this->id,
-            'user_id'       => $this->user_id,
+            'user'          => UserResource::collection([$this->user])->pluck('username')->first(),
             'title'         => $this->title,
             'body'          => $this->body,
             'slug'          => $this->slug,
-            'created_at'    => $this->created_at,
+            'created_at'    => \Carbon\Carbon::parse($this->created_at)->translatedFormat('d F Y'),
             'image'         => str_contains($this->image, "http") ? $this->image : asset('images/articles/' . $this->image),
             'details'       => url('api/articles/') . '/' . $this->id
         ];

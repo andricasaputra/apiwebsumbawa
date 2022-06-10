@@ -29,6 +29,20 @@ class ArticleController extends Controller
         return ArticleResource::collection($this->repository->paginate());
     }
 
+     /**
+     * Display a latest of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function latest()
+    {
+        $take = 1;
+
+        if(request()->has('take')) $take = request()->take;
+
+        return ArticleResource::collection($this->repository->get()->take($take));
+    }
+
     /**
      * Store a newly created resource in storage.
      *

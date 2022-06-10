@@ -11,6 +11,11 @@ class ArticlesRepository extends AbstractRepository
 		parent::__construct($model, $image);
 	}
 
+	public function topFiveLates($request)
+	{
+		return parent::store($this->upload($request));
+	}
+
 	public function store($request)
 	{
 		return parent::store($this->upload($request));
