@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Api\SPP;
 use App\Contracts\SPPRepositoryContract;
 use App\Contracts\UplaodContract;
 use App\Models\SPP\AlurPelayanan;
+use App\Repositories\SPP\AlurPelayananRepository;
 
 class HomeSPPController extends AbstractSPPController
 {
-    public function __construct(SPPRepositoryContract $repository, ?UplaodContract $image)
+    public function __construct(?SPPRepositoryContract $repository, ?UplaodContract $image)
     {
-        $repository->setModel(new AlurPelayanan);
-        $repository->setImage($image);
+        $repository?->setModel(new AlurPelayanan);
+        $repository?->setImage($image);
 
         parent::__construct($repository, $image);
     }

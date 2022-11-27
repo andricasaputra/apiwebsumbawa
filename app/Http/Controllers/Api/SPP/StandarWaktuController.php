@@ -8,11 +8,11 @@ use App\Models\SPP\StandarWaktu;
 
 class StandarWaktuController extends AbstractSPPController
 {
-    public function __construct(SPPRepositoryContract $repository, UplaodContract $image)
+    public function __construct(?SPPRepositoryContract $repository, ?UplaodContract $image)
     {
 
-        $repository->setModel(new StandarWaktu);
-        $repository->setImage($image);
+        $repository?->setModel(new StandarWaktu);
+        $repository?->setImage($image);
 
         parent::__construct($repository, $image);
     }

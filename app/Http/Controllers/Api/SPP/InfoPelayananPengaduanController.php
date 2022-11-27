@@ -9,11 +9,11 @@ use App\Models\SPP\InfoPelayananPengaduan;
 class InfoPelayananPengaduanController extends AbstractSPPController
 {
     
-    public function __construct(SPPRepositoryContract $repository, UplaodContract $image)
+    public function __construct(?SPPRepositoryContract $repository, ?UplaodContract $image)
     {
 
-        $repository->setModel(new InfoPelayananPengaduan);
-        $repository->setImage($image);
+        $repository?->setModel(new InfoPelayananPengaduan);
+        $repository?->setImage($image);
 
         parent::__construct($repository, $image);
     }

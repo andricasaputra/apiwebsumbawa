@@ -16,6 +16,7 @@ class ArticleController extends Controller
 
     public function __construct(UplaodContract $image = null)
     {
+        $this->middleware('auth:sanctum')->except(['index', 'show', 'latest']);
         $this->repository = new ArticlesRepository(new Article, $image);
     }
 

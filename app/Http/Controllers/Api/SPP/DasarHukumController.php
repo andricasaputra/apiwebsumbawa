@@ -8,11 +8,11 @@ use App\Models\SPP\DasarHukum;
 
 class DasarHukumController extends AbstractSPPController
 {
-    public function __construct(SPPRepositoryContract $repository, UplaodContract $image)
+    public function __construct(?SPPRepositoryContract $repository, ?UplaodContract $image)
     {
 
-        $repository->setModel(new DasarHukum);
-        $repository->setImage($image);
+        $repository?->setModel(new DasarHukum);
+        $repository?->setImage($image);
 
         parent::__construct($repository, $image);
     }

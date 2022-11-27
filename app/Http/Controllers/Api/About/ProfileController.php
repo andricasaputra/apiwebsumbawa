@@ -1,23 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\About;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AboutResource as JsonResource;
+use App\Models\About\Profile;
+use App\Repositories\About\ProfileRepository;
 use Illuminate\Http\Request;
-Use App\Models\Headline;
-use App\Repositories\HeadlineRepository; 
-use App\Http\Resources\HeadlineResource;
-use App\Http\Requests\HeadlineRequest;
-use App\Contracts\UplaodContract;
 
-class HeadlineController extends Controller
+class ProfileController extends Controller
 {
     protected $repository;
 
-    public function __construct(UplaodContract $image = null)
+    public function __construct()
     {
-        $this->middleware('auth:sanctum')->except(['index', 'show']);
-        $this->repository = new HeadlineRepository(new Headline, $image);
+        $this->repository = new ProfileRepository(new Profile);
     }
 
     /**
@@ -27,7 +24,17 @@ class HeadlineController extends Controller
      */
     public function index()
     {
-        return HeadlineResource::collection($this->repository->paginate());
+        return new JsonResource($this->repository->first());
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -36,9 +43,9 @@ class HeadlineController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(HeadlineRequest $request)
+    public function store(Request $request)
     {
-        return  new HeadlineResource($this->repository->store($request));
+        //
     }
 
     /**
@@ -49,7 +56,18 @@ class HeadlineController extends Controller
      */
     public function show($id)
     {
-        return new HeadlineResource($this->repository->show($id));
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -59,9 +77,9 @@ class HeadlineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(HeadlineRequest $request, $id)
+    public function update(Request $request, $id)
     {
-         return new HeadlineResource($this->repository->update($request, $id));
+        //
     }
 
     /**
@@ -72,6 +90,6 @@ class HeadlineController extends Controller
      */
     public function destroy($id)
     {
-        return new HeadlineResource($this->repository->destroy($id));
+        //
     }
 }
